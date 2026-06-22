@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certifications — Avinash Kumar Singh</title>
+  <meta name="description" content="Verified Credly badges of Avinash Kumar Singh — Dassault Systèmes & SOLIDWORKS certifications.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="index.html" class="brand"><span class="mk">A</span> A.K. Singh</a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html" class="active">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile" id="mob">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications &amp; Conferences</a>
+      <a href="patents.html">Patents</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="section page-top">
+    <div class="wrap">
+      <div class="sec-head" style="text-align:center;align-items:center;">
+        <span class="eyebrow">Credly Verified Credentials</span>
+        <h2>Certifications &amp; <span class="hl">Badges</span></h2>
+        <div class="rule" style="margin:14px auto 0;"></div>
+        <p style="color:var(--muted);max-width:600px;margin:12px auto 0;">Official Dassault Systèmes badges synced from my Credly profile. Click any badge to view its certificate.</p>
+        <a class="btn btn-ghost" id="credLink" href="https://www.credly.com/users/avinash70" target="_blank" rel="noopener" style="margin-top:18px;">View full Credly profile →</a>
+      </div>
+
+      <div class="cred-grid" id="credGrid"></div>
+    </div>
+  </section>
+
+  <div class="cert-modal" id="certModal" onclick="if(event.target===this)closeCert()">
+    <div class="cert-modal-inner">
+      <div class="cert-modal-head">
+        <span class="ct" id="certCap">Certificate</span>
+        <button class="cert-close" onclick="closeCert()" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
+      </div>
+      <img id="certImg" src="" alt="Certificate">
+      <iframe id="certFrame" title="Certificate" style="display:none;width:100%;height:72vh;border:0;background:#fff;" allow="autoplay"></iframe>
+      <div class="cert-fallback" id="certFallback">Certificate not added yet.<br>Add a Google Drive link in the admin, or drop the file into the <b>certs/</b> folder.</div>
+      <div class="cert-modal-foot"><a class="b-link" id="certVerify" href="https://www.credly.com/users/avinash70" target="_blank" rel="noopener">Verify on Credly →</a></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="c">© 2025 Avinash Kumar Singh · PhD Research Portfolio</div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  var CERT=(window.CONTENT&&window.CONTENT.certifications)||{};
+  var CREDLY=CERT.credly||"https://www.credly.com/users/avinash70";
+  var BADGES=CERT.badges||[];
+  document.getElementById("credLink").href=CREDLY;
+  document.getElementById("certVerify").href=CREDLY;
+
+  function wrapLabel(t){
+    t=String(t||""); var w=t.split(" "), lines=[], cur="";
+    w.forEach(function(x){ if((cur+" "+x).trim().length>11){ if(cur)lines.push(cur); cur=x; } else cur=(cur?cur+" ":"")+x; });
+    if(cur)lines.push(cur); return lines.slice(0,3);
+  }
+  function scallops(){ var s="",n=32,i; for(i=0;i<n;i++){ var a=i/n*Math.PI*2; s+='<circle cx="'+(50+Math.cos(a)*42).toFixed(1)+'" cy="'+(50+Math.sin(a)*42).toFixed(1)+'" r="3.4" fill="#1f6fb2"/>'; } return s; }
+  function badgeSVG(b,i){
+    var color=b.band||"#c0392b";
+    var lines=wrapLabel(b.label||b.title);
+    var fs=lines.length>=3?4.6:(lines.length===2?6:7.5);
+    var y0=61-(lines.length-1)*(fs*0.62);
+    var lab=lines.map(function(l,k){return '<text x="50" y="'+(y0+k*(fs+1.2)).toFixed(1)+'" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="'+fs+'" fill="#fff">'+cEsc(l)+'</text>';}).join("");
+    return '<svg viewBox="0 0 100 100" class="cred-svg" xmlns="http://www.w3.org/2000/svg">'
+      +'<defs><clipPath id="cc'+i+'"><circle cx="50" cy="50" r="40"/></clipPath>'
+      +'<path id="arc'+i+'" d="M25 80 A26 26 0 0 0 75 80" fill="none"/></defs>'
+      +scallops()
+      +'<circle cx="50" cy="50" r="40" fill="#fff" stroke="#1f6fb2" stroke-width="2"/>'
+      +'<g clip-path="url(#cc'+i+')"><rect x="0" y="50" width="100" height="50" fill="'+color+'"/><rect x="0" y="50" width="100" height="1.2" fill="#1f6fb2"/></g>'
+      +'<circle cx="50" cy="24" r="6.6" fill="none" stroke="#1f6fb2" stroke-width="1.4"/>'
+      +'<text x="50" y="26.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="5.4" fill="#1f6fb2">3DS</text>'
+      +'<text x="50" y="36" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="3.6" letter-spacing="0.3" fill="#0a2a45">DASSAULT SYSTÈMES</text>'
+      +lab
+      +'<text font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="3.9" letter-spacing="0.4" fill="#fff"><textPath href="#arc'+i+'" startOffset="50%" text-anchor="middle">'+cEsc(b.prog||"")+'</textPath></text>'
+      +'</svg>';
+  }
+  window.badgeSVGFor=function(i){ return badgeSVG(BADGES[i],i); };
+
+  function card(b,i){
+    var graphic=(b.img&&b.img.trim())
+      ? '<img src="'+window.imgUrl(b.img)+'" alt="'+cEsc(b.title)+'" onerror="this.outerHTML=badgeSVGFor('+i+')">'
+      : badgeSVG(b,i);
+    return '<div class="cred-card" onclick="openCert('+i+')" title="Click to view certificate">'
+      +'<div class="cred-badge">'+graphic+'</div>'
+      +'<h3 class="cred-title">'+cEsc(b.title)+'</h3>'
+      +'<div class="cred-issuer">'+cEsc(b.issuer)+'</div>'
+      +'<div class="cred-issued">Issued '+cEsc(b.issued)+'</div>'
+      +'</div>';
+  }
+  document.getElementById("credGrid").innerHTML=BADGES.map(card).join("");
+
+  function slugify(t){return String(t).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');}
+  window.openCert=function(i){
+    var b=BADGES[i];
+    var el=document.getElementById("certImg");
+    var frame=document.getElementById("certFrame");
+    var fb=document.getElementById("certFallback");
+    document.getElementById("certCap").textContent=b.title;
+    fb.style.display="none";
+    if(b.cert && b.cert.trim()){
+      /* Google Drive link or PDF — show inline preview (works for image or PDF) */
+      el.style.display="none"; el.removeAttribute("src");
+      frame.style.display=""; frame.src=window.docUrl(b.cert);
+    } else {
+      frame.style.display="none"; frame.removeAttribute("src");
+      var img="certs/"+slugify(b.title)+".jpg";
+      el.style.display="";
+      el.onerror=function(){el.style.display="none";fb.style.display="block";};
+      el.src=img;
+    }
+    document.getElementById("certModal").classList.add("open");
+  };
+  window.closeCert=function(){
+    document.getElementById("certModal").classList.remove("open");
+    var frame=document.getElementById("certFrame"); if(frame) frame.removeAttribute("src");
+  };
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeCert();});
+  </script>
+
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('toTop');if(!b)return;function t(){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

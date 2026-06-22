@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Appointment — Avinash Kumar Singh</title>
+  <meta name="description" content="Schedule a meeting with Avinash Kumar Singh for CAD Design, Research, PLM, Simulation, Blockchain, Design Thinking or Academic Consultation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js"></script>
+  <style>
+    .appt-head{text-align:center;max-width:680px;margin:0 auto 36px;}
+    .appt-head h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.02em;margin:14px 0 12px;}
+    .appt-head h1 .hl{color:var(--gold);}
+    .appt-head p{color:var(--muted);font-size:16px;}
+    .appt-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:start;max-width:980px;margin:0 auto;}
+    .appt-side{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;}
+    .appt-side h3{font-size:16px;font-weight:700;margin:0 0 14px;}
+    .appt-side ul{list-style:none;margin:0 0 20px;padding:0;}
+    .appt-side li{position:relative;padding:8px 0 8px 20px;font-size:13.5px;color:var(--muted);}
+    .appt-side li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+    .appt-side .mini{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+    .appt-side .line{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink);padding:7px 0;border-top:1px solid var(--line);}
+    .appt-side .line svg{width:16px;height:16px;color:var(--gold);flex-shrink:0;}
+    .appt-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .appt-grid .full{grid-column:1/-1;}
+    .field select{width:100%;padding:11px 13px;border:1px solid var(--line-strong);border-radius:9px;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;outline:none;}
+    .field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft);}
+    .purpose-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .purpose-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:13px 14px;border-radius:9px;border:1px solid var(--line-strong);background:transparent;color:var(--muted);cursor:pointer;text-align:left;transition:.16s;}
+    .purpose-btn:hover{border-color:var(--gold);color:var(--gold);}
+    .purpose-btn.active{background:var(--gold);color:#0a0a0a;border-color:var(--gold);font-weight:700;}
+    .req{color:var(--gold);}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+    .appt-success{display:none;text-align:center;padding:30px;border:1px solid var(--line-strong);border-radius:14px;background:var(--gold-soft);}
+    .appt-success.show{display:block;}
+    .appt-success .tick{width:54px;height:54px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--gold);}
+    .appt-success h3{font-size:19px;font-weight:800;margin:0 0 8px;}
+    .appt-success p{color:var(--muted);font-size:14px;margin:0 auto 18px;max-width:440px;}
+    .appt-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+    @media(max-width:860px){.appt-wrap{grid-template-columns:1fr;}.appt-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="index.html" class="brand"><span class="mk">A</span> A.K. Singh</a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile" id="mob">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications &amp; Conferences</a>
+      <a href="patents.html">Patents</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="section page-top">
+    <div class="wrap">
+      <div class="appt-head">
+        <span class="eyebrow">Schedule a Meeting</span>
+        <h1>Book an Appointment with <span class="hl">Avinash Kumar Singh</span></h1>
+        <p>Schedule a meeting for CAD Design, Research, PLM, Simulation, Blockchain, Design Thinking, or Academic Consultation.</p>
+      </div>
+
+      <div class="appt-wrap">
+        <aside class="appt-side">
+          <div class="mini">What to expect</div>
+          <h3>A focused session</h3>
+          <ul>
+            <li>30-minute consultation, online via Google Meet</li>
+            <li>You'll receive a Google Calendar invite</li>
+            <li>Confirmation sent to your email</li>
+          </ul>
+          <div class="mini">Direct contact</div>
+          <div class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>avinashkumarsingh078@gmail.com</div>
+          <div class="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>+91 8917639056</div>
+        </aside>
+
+        <div class="form-card">
+          <form id="apptForm" novalidate>
+            <input type="text" class="hp" id="company_site" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="appt-grid">
+              <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" id="f-name" required></div>
+              <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" id="f-email" required></div>
+              <div class="field"><label>Phone Number <span class="req">*</span></label><input type="tel" id="f-phone" required></div>
+              <div class="field"><label>Organization / College</label><input type="text" id="f-org"></div>
+              <div class="field full"><label>Purpose of Meeting <span class="req">*</span></label>
+                <select id="f-purpose" required onchange="toggleCustom()">
+                  <option value="">Select a purpose…</option>
+                  <option>Training</option>
+                  <option>Consulting</option>
+                  <option>Digital Twin</option>
+                  <option>Academic Project</option>
+                  <option>Webinar</option>
+                  <option>Faculty Development Program</option>
+                  <option>Custom Requirement</option>
+                </select>
+              </div>
+              <div class="field full" id="customWrap" style="display:none;">
+                <label>Specify Your Requirement <span class="req">*</span></label>
+                <textarea id="f-custom" placeholder="Briefly describe your custom requirement…"></textarea>
+              </div>
+              <div class="field full"><label>Choose Software <span class="req">*</span></label>
+                <select id="f-software" required onchange="toggleSoftwareCustom()">
+                  <option value="">Select software…</option>
+                  <option>CATIA</option>
+                  <option>SIMULIA</option>
+                  <option>ENOVIA</option>
+                  <option>DELMIA</option>
+                  <option>BIM</option>
+                  <option>SOLIDWORKS</option>
+                  <option>GEOVIA</option>
+                  <option>BIOVIA</option>
+                  <option>Custom Requirement</option>
+                </select>
+              </div>
+              <div class="field full" id="softCustomWrap" style="display:none;">
+                <label>Specify Your Requirement <span class="req">*</span></label>
+                <textarea id="f-soft-custom" placeholder="Briefly describe the software / requirement…"></textarea>
+              </div>
+              <div class="field full"><label>Preferred Date <span class="req">*</span></label><input type="date" id="f-date" required></div>
+              <div class="field full"><label>Preferred Time Slot <span class="req">*</span></label>
+                <select id="f-slot" required>
+                  <option value="">Select a slot…</option>
+                  <option value="1000-1030">10:00 AM – 10:30 AM</option>
+                  <option value="1030-1100">10:30 AM – 11:00 AM</option>
+                  <option value="1100-1130">11:00 AM – 11:30 AM</option>
+                  <option value="1130-1200">11:30 AM – 12:00 PM</option>
+                  <option value="1200-1230">12:00 PM – 12:30 PM</option>
+                  <option value="1430-1500">02:30 PM – 03:00 PM</option>
+                  <option value="1500-1530">03:00 PM – 03:30 PM</option>
+                  <option value="1530-1600">03:30 PM – 04:00 PM</option>
+                  <option value="1600-1630">04:00 PM – 04:30 PM</option>
+                  <option value="1700-1730">05:00 PM – 05:30 PM</option>
+                </select>
+              </div>
+              <div class="field full"><label>Additional Notes</label><textarea id="f-notes" placeholder="Anything that helps me prepare…"></textarea></div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px;">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:2px;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              Request Appointment
+            </button>
+            <p id="apptError" style="display:none;color:#ff9a9a;font-family:var(--mono);font-size:11px;text-align:center;margin-top:10px;"></p>
+            <p style="color:var(--muted);font-size:11px;text-align:center;margin-top:12px;line-height:1.6;">On submit, a Google Calendar event opens pre-filled with your details and Avinash added as a guest — confirm it to send the invite to you both.</p>
+          </form>
+
+          <div class="appt-success" id="apptSuccess">
+            <div class="tick"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h3>Appointment request submitted</h3>
+            <p>Your appointment request has been submitted successfully. A confirmation email has been sent to your registered email address.</p>
+            <div class="appt-actions">
+              <a class="btn btn-primary" id="gcalLink" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+              <a class="btn btn-ghost" id="mailLink" href="#">Email the details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="c">© 2025 Avinash Kumar Singh · PhD Research Portfolio</div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  var ADMIN_EMAIL="avinashkumarsingh078@gmail.com";
+  (function(){
+    var dateEl=document.getElementById("f-date");
+    var today=new Date(); today.setDate(today.getDate());
+    dateEl.min=today.toISOString().split("T")[0];
+  })();
+  window.toggleCustom=function(){
+    var show=document.getElementById("f-purpose").value==="Custom Requirement";
+    document.getElementById("customWrap").style.display=show?"":"none";
+  };
+  window.toggleSoftwareCustom=function(){
+    var show=document.getElementById("f-software").value==="Custom Requirement";
+    document.getElementById("softCustomWrap").style.display=show?"":"none";
+  };
+  function val(id){return document.getElementById(id).value.trim();}
+  document.getElementById("apptForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var err=document.getElementById("apptError");
+    // spam honeypot
+    if(val("company_site")){ return; }
+    var name=val("f-name"), email=val("f-email"), phone=val("f-phone"),
+        org=val("f-org"), purpose=val("f-purpose"), date=val("f-date"),
+        slot=val("f-slot"), notes=val("f-notes");
+    var custom=val("f-custom"), software=val("f-software"), softCustom=val("f-soft-custom");
+    if(!name||!email||!phone||!purpose||!software||!date||!slot){
+      err.textContent="Please fill all required (*) fields."; err.style.display="block"; return;
+    }
+    if(purpose==="Custom Requirement" && !custom){
+      err.textContent="Please specify your custom requirement."; err.style.display="block"; return;
+    }
+    if(software==="Custom Requirement" && !softCustom){
+      err.textContent="Please specify your software requirement."; err.style.display="block"; return;
+    }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+      err.textContent="Please enter a valid email address."; err.style.display="block"; return;
+    }
+    // duplicate guard (same email+date+slot within session)
+    var key="appt_"+email+"_"+date+"_"+slot;
+    if(sessionStorage.getItem(key)){ err.textContent="You've already requested this slot."; err.style.display="block"; return; }
+    sessionStorage.setItem(key,"1");
+    err.style.display="none";
+
+    var d=date.replace(/-/g,"");
+    var s=slot.split("-");
+    var startDT=d+"T"+s[0]+"00", endDT=d+"T"+s[1]+"00";
+    var title="Meeting with Avinash Kumar Singh — "+purpose;
+    var details=
+      "Appointment request via portfolio\n"+
+      "Name: "+name+"\n"+
+      "Email: "+email+"\n"+
+      "Phone: "+phone+"\n"+
+      "Organization/College: "+(org||"-")+"\n"+
+      "Purpose: "+purpose+"\n"+
+      (purpose==="Custom Requirement" ? "Custom Requirement: "+custom+"\n" : "")+
+      "Software: "+(software==="Custom Requirement"?("Custom Requirement — "+softCustom):software)+"\n"+
+      "Preferred Date: "+date+"\n"+
+      "Preferred Slot: "+document.getElementById("f-slot").selectedOptions[0].text+"\n"+
+      "Notes: "+(notes||"-");
+
+    var gcal="https://calendar.google.com/calendar/render?action=TEMPLATE"+
+      "&text="+encodeURIComponent(title)+
+      "&dates="+startDT+"/"+endDT+
+      "&details="+encodeURIComponent(details)+
+      "&add="+encodeURIComponent(ADMIN_EMAIL+","+email)+
+      "&location="+encodeURIComponent("Google Meet (link to be shared)");
+
+    var subject="Appointment Request — "+name+" ("+purpose+")";
+    var mail="mailto:"+ADMIN_EMAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(details);
+
+    document.getElementById("gcalLink").href=gcal;
+    document.getElementById("mailLink").href=mail;
+    document.getElementById("apptForm").style.display="none";
+    document.getElementById("apptSuccess").classList.add("show");
+    window.open(gcal,"_blank");
+  });
+  </script>
+  <script>
+  (function(){
+    var a=(window.CONTENT&&window.CONTENT.appointment)||{};
+    function fill(id,arr,ph){var s=document.getElementById(id);if(!s||!arr||!arr.length)return;s.innerHTML='<option value="">'+ph+'</option>'+arr.map(function(o){return '<option>'+cEsc(o)+'</option>';}).join('');}
+    fill("f-purpose",a.purposes,"Select a purpose…");
+    fill("f-software",a.software,"Select software…");
+  })();
+  </script>
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('toTop');if(!b)return;function t(){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

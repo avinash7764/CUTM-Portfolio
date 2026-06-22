@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patents — Avinash Kumar Singh</title>
+  <meta name="description" content="Filed patents of Avinash Kumar Singh in solar thermal energy conversion, power generation and distillation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js"></script>
+  <style>
+    .pt-intro{color:var(--muted);max-width:680px;margin:10px 0 0;}
+
+    /* counter band */
+    .pt-band{position:relative;overflow:hidden;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:32px 0 40px;background:var(--surface);border:1px solid var(--line-strong);border-radius:18px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
+    .pt-band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 21px,rgba(212,175,55,.05) 21px 22px),repeating-linear-gradient(90deg,transparent 0 21px,rgba(212,175,55,.05) 21px 22px);pointer-events:none;}
+    .pt-bcell{position:relative;text-align:center;padding:26px 14px;border-right:1px solid var(--line);}
+    .pt-bcell:last-child{border-right:none;}
+    .pt-bcell .n{font-family:var(--mono);font-size:34px;font-weight:700;color:var(--gold);line-height:1;letter-spacing:-.01em;}
+    .pt-bcell .l{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px;}
+
+    /* cards grid */
+    .pt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+    .pt-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
+    .pt-card:hover{transform:translateY(-5px);border-color:var(--line-strong);box-shadow:0 30px 60px rgba(0,0,0,.34);}
+
+    .pt-fig{position:relative;height:188px;display:flex;align-items:center;justify-content:center;color:var(--gold);border-bottom:1px solid var(--line);
+      background:repeating-linear-gradient(0deg,transparent 0 19px,rgba(212,175,55,.055) 19px 20px),repeating-linear-gradient(90deg,transparent 0 19px,rgba(212,175,55,.055) 19px 20px),radial-gradient(120% 100% at 50% 0,rgba(212,175,55,.07),transparent 70%);}
+    .pt-fig svg{width:64%;max-height:140px;height:auto;filter:drop-shadow(0 6px 14px rgba(212,175,55,.18));transition:transform .35s ease;}
+    .pt-card:hover .pt-fig svg{transform:scale(1.05);}
+    .pt-no{position:absolute;top:14px;left:16px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--gold);}
+    .pt-status{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid var(--line-strong);background:var(--gold-soft);color:var(--gold);display:flex;align-items:center;gap:6px;}
+    .pt-status i{width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block;box-shadow:0 0 0 3px rgba(212,175,55,.18);}
+
+    .pt-body{padding:22px 24px 24px;}
+    .pt-tagline{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+    .pt-body h3{font-size:19px;font-weight:700;color:var(--ink);margin:0 0 10px;line-height:1.3;}
+    .pt-desc{color:var(--muted);font-size:13.5px;line-height:1.65;margin:0 0 18px;}
+    .pt-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px;border-top:1px solid var(--line);padding-top:15px;}
+    .pt-meta .k{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .pt-meta .v{font-size:13px;font-weight:600;color:var(--ink);}
+
+    /* cta */
+    .pt-note{margin-top:38px;position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(120deg,var(--surface),rgba(212,175,55,.05));border:1px solid var(--line-strong);border-radius:18px;padding:28px 32px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
+    .pt-note h3{margin:0 0 6px;font-size:19px;font-weight:800;color:var(--ink);}
+    .pt-note p{margin:0;color:var(--muted);font-size:14px;max-width:580px;line-height:1.6;}
+
+    @media(max-width:820px){.pt-grid{grid-template-columns:1fr;}}
+    @media(max-width:560px){.pt-band{grid-template-columns:repeat(2,1fr);}.pt-bcell:nth-child(2){border-right:none;}.pt-bcell:nth-child(1),.pt-bcell:nth-child(2){border-bottom:1px solid var(--line);}}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="index.html" class="brand"><span class="mk">A</span> A.K. Singh</a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="patents.html" class="active">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile" id="mob">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications &amp; Conferences</a>
+      <a href="patents.html">Patents</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="section page-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Intellectual Property</span>
+        <h2>Patents &amp; <span class="hl">Innovations</span></h2>
+        <div class="rule"></div>
+        <p class="pt-intro">A portfolio of filed patents turning solar-thermal research into protected, deployable engineering systems — from vortex power generation to clean-water distillation.</p>
+      </div>
+
+      <div class="pt-band" id="ptBand"></div>
+
+      <div class="pt-grid" id="patentGrid"></div>
+
+      <div class="pt-note">
+        <div>
+          <h3>Open to Licensing &amp; Collaboration</h3>
+          <p>All applications are filed with the Indian Patent Office and currently under examination. I welcome industry licensing, co-development and academic research partnerships.</p>
+        </div>
+        <a class="btn btn-primary" href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="c">© 2025 Avinash Kumar Singh · PhD Research Portfolio</div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="conferences.html">Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  var SVG_CHIMNEY='<svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="36" cy="34" r="11"/><line x1="36" y1="12" x2="36" y2="5"/><line x1="14" y1="34" x2="7" y2="34"/><line x1="20" y1="18" x2="15" y2="13"/><line x1="52" y1="18" x2="57" y2="13"/><line x1="20" y1="50" x2="15" y2="55"/><rect x="118" y="48" width="44" height="86"/><path d="M114 48 L166 48 L154 34 L126 34 Z"/><path d="M120 120 q11 -12 22 0 t22 0"/><path d="M120 106 q11 -12 22 0 t22 0"/><path d="M140 30 L140 12"/><path d="M134 18 L140 10 L146 18"/></svg>';
+  var SVG_VORTEX='<svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M100 78 C100 68 112 68 112 78 C112 92 90 92 90 76 C90 56 122 56 122 80 C122 106 80 106 80 76"/><path d="M64 44 a44 44 0 1 1 -8 34" stroke-dasharray="2 5" opacity=".55"/><path d="M52 78 l-4 -5 M52 78 l5 -3" opacity=".55"/><line x1="40" y1="122" x2="72" y2="106"/><path d="M72 106 l-8 1 M72 106 l-1 -8"/><line x1="160" y1="122" x2="128" y2="106"/><path d="M128 106 l8 1 M128 106 l1 -8"/><line x1="55" y1="132" x2="145" y2="132"/></svg>';
+  var SVG_DISTILL='<svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="60" y1="8" x2="60" y2="30"/><line x1="100" y1="8" x2="100" y2="30"/><line x1="140" y1="8" x2="140" y2="30"/><path d="M28 116 Q100 18 172 116"/><circle cx="100" cy="78" r="6"/><line x1="62" y1="92" x2="96" y2="80"/><line x1="138" y1="92" x2="104" y2="80"/><path d="M100 90 q-7 11 0 17 q7 -6 0 -17"/><line x1="58" y1="132" x2="142" y2="132"/></svg>';
+  var SVG_TRACKER='<svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-18 100 58)"><rect x="62" y="36" width="76" height="46" rx="2"/><line x1="87" y1="36" x2="87" y2="82"/><line x1="113" y1="36" x2="113" y2="82"/><line x1="62" y1="59" x2="138" y2="59"/></g><line x1="100" y1="72" x2="100" y2="120"/><path d="M82 120 L118 120 L112 134 L88 134 Z"/><path d="M150 56 a26 26 0 0 1 -9 21" stroke-dasharray="2 4" opacity=".55"/><path d="M58 98 a32 16 0 0 0 84 0" stroke-dasharray="2 4" opacity=".55"/></svg>';
+
+  var SVGMAP={chimney:SVG_CHIMNEY,vortex:SVG_VORTEX,distill:SVG_DISTILL,tracker:SVG_TRACKER};
+  var PATENTS=((window.CONTENT&&window.CONTENT.patents)||[]).map(function(p){
+    return {svg:SVGMAP[p.svg]||SVG_CHIMNEY,title:p.title,field:p.field,desc:p.desc,app:p.app,year:p.year};
+  });
+
+  document.getElementById("ptBand").innerHTML=[
+    {n:String(PATENTS.length).padStart(2,"0"),l:"Patents Filed",count:true},
+    {n:"2025",l:"Filing Year"},
+    {n:"04",l:"Solar Domains",count:true},
+    {n:"100%",l:"Under Examination"}
+  ].map(function(s){
+    return '<div class="pt-bcell"><div class="n"'+(s.count?' data-count="'+parseInt(s.n,10)+'" data-pad="2"':'')+'>'+s.n+'</div><div class="l">'+s.l+'</div></div>';
+  }).join("");
+
+  document.getElementById("patentGrid").innerHTML=PATENTS.map(function(p,i){
+    return '<div class="pt-card">'+
+      '<div class="pt-fig">'+
+        '<span class="pt-no">PAT / '+String(i+1).padStart(2,"0")+'</span>'+
+        '<span class="pt-status"><i></i>Filed</span>'+
+        p.svg+
+      '</div>'+
+      '<div class="pt-body">'+
+        '<div class="pt-tagline">'+p.field+'</div>'+
+        '<h3>'+p.title+'</h3>'+
+        '<p class="pt-desc">'+p.desc+'</p>'+
+        '<div class="pt-meta">'+
+          '<div style="grid-column:1/-1"><span class="k">Inventor</span><span class="v">Avinash Kumar Singh</span></div>'+
+          '<div><span class="k">Application No.</span><span class="v">'+p.app+'</span></div>'+
+          '<div><span class="k">Filing Year</span><span class="v">'+p.year+'</span></div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+
+  /* count-up animation */
+  (function(){
+    var els=document.querySelectorAll('[data-count]');
+    function run(el){
+      var target=parseInt(el.getAttribute('data-count'),10),pad=parseInt(el.getAttribute('data-pad')||'0',10),cur=0,
+          step=Math.max(1,Math.round(target/24));
+      var id=setInterval(function(){
+        cur+=step; if(cur>=target){cur=target;clearInterval(id);}
+        el.textContent=pad?String(cur).padStart(pad,'0'):cur;
+      },28);
+    }
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io.unobserve(e.target);}});},{threshold:.5});
+      els.forEach(function(el){io.observe(el);});
+    } else { els.forEach(run); }
+  })();
+  </script>
+
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('toTop');if(!b)return;function t(){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

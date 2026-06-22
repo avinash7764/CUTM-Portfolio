@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Avinash Kumar Singh</title>
+  <meta name="description" content="Featured engineering projects of Avinash Kumar Singh across CAD, DELMIA, ENOVIA, AEC and advanced manufacturing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js"></script>
+  <style>
+    .vid-modal{display:none;position:fixed;inset:0;z-index:120;background:rgba(6,9,14,.9);align-items:center;justify-content:center;padding:24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+    .vid-modal.open{display:flex;}
+    .vid-inner{width:100%;max-width:940px;background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6);}
+    .vid-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 18px;border-bottom:1px solid var(--line);}
+    .vid-bar h4{margin:0;font-size:13px;font-weight:700;color:var(--ink);font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;}
+    .vid-close{background:none;border:1px solid var(--line-strong);color:var(--ink);width:32px;height:32px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .vid-close:hover{background:var(--gold-soft);color:var(--gold);}
+    .vid-frame{position:relative;width:100%;aspect-ratio:16/9;background:#000;}
+    .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+    .vid-guard{position:absolute;top:0;right:0;width:78px;height:56px;z-index:5;background:transparent;}
+    .vid-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9fb0c4;font-size:14px;text-align:center;padding:20px;}
+    .pj-btn svg{width:12px;height:12px;margin-right:5px;vertical-align:-1px;}
+    .pj-btn.has{border-color:var(--line-strong);color:var(--gold);}
+
+    /* static cover image inside media area */
+    .pj-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform .35s ease;}
+    .pj-card:hover .pj-cover{transform:scale(1.05);}
+    .pj-media .pj-cat,.pj-media .pj-hint{z-index:3;}
+    .pj-media:has(.pj-cover)::after{opacity:0;}
+    .pj-media:has(.pj-cover) .pj-hint{color:rgba(255,255,255,.8);text-shadow:0 1px 6px rgba(0,0,0,.7);}
+
+    /* project thumbnails */
+    .pj-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:16px 0 4px;}
+    .pj-thumb{position:relative;aspect-ratio:1;border-radius:7px;overflow:hidden;border:1px solid var(--line);cursor:pointer;background:var(--surface-2);}
+    .pj-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
+    .pj-thumb:hover{border-color:var(--line-strong);}
+    .pj-thumb:hover img{transform:scale(1.1);}
+    .pj-thumb.empty::after{content:attr(data-n);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--muted);background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(212,175,55,.05) 6px 12px);}
+
+    /* gallery lightbox */
+    .gal-modal{display:none;position:fixed;inset:0;z-index:130;background:rgba(5,8,12,.93);align-items:center;justify-content:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+    .gal-modal.open{display:flex;}
+    .gal-stage{position:relative;width:100%;max-width:1000px;padding:0 16px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+    .gal-imgwrap{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:240px;}
+    .gal-imgwrap img{max-width:100%;max-height:74vh;border-radius:12px;border:1px solid var(--line-strong);box-shadow:0 30px 70px rgba(0,0,0,.6);background:#0c0f14;}
+    .gal-empty{display:none;color:#9fb0c4;font-size:14px;text-align:center;padding:60px 20px;border:1px dashed rgba(255,255,255,.18);border-radius:12px;width:100%;}
+    .gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(20,24,32,.7);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
+    .gal-nav:hover{background:var(--gold);color:#0b0d11;border-color:var(--gold);}
+    .gal-prev{left:-4px;} .gal-next{right:-4px;}
+    .gal-bar{display:flex;align-items:center;justify-content:space-between;width:100%;gap:14px;}
+    .gal-bar .t{font-family:var(--mono);font-size:12px;color:#e7edf5;letter-spacing:.03em;}
+    .gal-bar .c{font-family:var(--mono);font-size:12px;color:var(--gold);}
+    .gal-close{position:fixed;top:18px;right:20px;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:rgba(20,24,32,.7);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .gal-close:hover{background:var(--gold);color:#0b0d11;border-color:var(--gold);}
+    @media(max-width:560px){.pj-thumbs{grid-template-columns:repeat(4,1fr);}.gal-nav{width:40px;height:40px;}}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="index.html" class="brand"><span class="mk">A</span> A.K. Singh</a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile" id="mob">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications &amp; Conferences</a>
+      <a href="patents.html">Patents</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="section page-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Engineering Work</span>
+        <h2>Featured <span class="hl">Projects</span></h2>
+        <div class="rule"></div>
+        <p style="color:var(--muted);max-width:640px;margin:10px 0 0;">Applied structural engineering and multi-material system deployments utilizing industrial-grade CAD tools.</p>
+      </div>
+
+      <div class="filters" id="pjFilters"></div>
+      <div class="proj-grid" id="projGrid"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="c">© 2025 Avinash Kumar Singh · PhD Research Portfolio</div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="conferences.html">Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  var PROJECTS=(window.CONTENT&&window.CONTENT.projects)?window.CONTENT.projects.map(function(p){
+    return {cat:p.cat,catLabel:p.catLabel,title:p.title,desc:p.desc,stack:(p.stack||[]).slice(),video:p.video||"",
+      _imgs:(p.images||[]).map(function(u){return window.imgUrl(u);}).filter(Boolean)};
+  }):[];
+
+  /* use Drive image links from the admin if present, else fall back to projimg/p<N>-1.jpg ... */
+  PROJECTS.forEach(function(p,i){
+    if(p._imgs && p._imgs.length){ p.images=p._imgs; }
+    else { p.images=[]; for(var k=1;k<=8;k++){ p.images.push("projimg/p"+(i+1)+"-"+k+".jpg"); } }
+  });
+
+  var FILTERS=[["all","All Projects"],["design","CAD Design"],["delmia","DELMIA Process"],["enovia","ENOVIA"],["aec","AEC"],["manufacturing","Advanced Manufacturing"]];
+  function renderFilters(active){
+    document.getElementById("pjFilters").innerHTML=FILTERS.map(function(f){
+      var n=f[0]==="all"?PROJECTS.length:PROJECTS.filter(function(p){return p.cat===f[0];}).length;
+      return '<button class="filter-btn'+(f[0]===active?' active':'')+'" onclick="filterProj(\''+f[0]+'\')">'+f[1]+' <span class="n">'+n+'</span></button>';
+    }).join("");
+  }
+  var PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  function card(p,i){
+    var has=p.video&&p.video.trim()?' has':'';
+    return '<div class="pj-card" data-cat="'+p.cat+'">'+
+      '<div class="pj-media" onclick="openGallery('+i+',0)" style="cursor:pointer">'+
+        '<img class="pj-cover" src="'+p.images[0]+'" alt="'+p.title+'" loading="lazy" onerror="this.remove();">'+
+        '<span class="pj-cat">'+p.catLabel+'</span>'+
+        '<span class="pj-hint">Click to open gallery</span>'+
+      '</div>'+
+      '<div class="pj-body"><h3>'+p.title+'</h3><p>'+p.desc+'</p>'+
+      '<div class="pj-stack">'+p.stack.map(function(s){return '<span class="stack-chip">'+s+'</span>';}).join('')+'</div>'+
+      '<div class="pj-actions"><button class="pj-btn'+has+'" onclick="event.stopPropagation();openVid('+i+')">'+PLAY+'Video</button><button class="pj-btn">Report</button></div>'+
+      '</div></div>';
+  }
+  function renderProj(){ document.getElementById("projGrid").innerHTML=PROJECTS.map(card).join(""); }
+  window.filterProj=function(c){
+    renderFilters(c);
+    document.querySelectorAll(".pj-card").forEach(function(el){
+      el.style.display=(c==="all"||el.dataset.cat===c)?"":"none";
+    });
+  };
+  renderFilters("all"); renderProj();
+
+  /* ---- video popup (YouTube / Google Drive) ---- */
+  function embedUrl(url){
+    if(!url) return "";
+    url=url.trim();
+    var yt=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|v\/))([\w-]{11})/);
+    if(yt) return "https://www.youtube-nocookie.com/embed/"+yt[1]+"?rel=0&modestbranding=1&playsinline=1";
+    var dr=url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]+)/);
+    if(dr) return "https://drive.google.com/file/d/"+dr[1]+"/preview";
+    return url;
+  }
+  window.openVid=function(i){
+    var p=PROJECTS[i], m=document.getElementById("vidModal");
+    document.getElementById("vidTitle").textContent=p.title;
+    var f=document.getElementById("vidFrame"), e=document.getElementById("vidEmpty");
+    var src=embedUrl(p.video);
+    if(src){ e.style.display="none"; f.style.display=""; f.src=src; }
+    else { f.removeAttribute("src"); f.style.display="none"; e.style.display="flex"; }
+    m.classList.add("open"); document.body.style.overflow="hidden";
+  };
+  window.closeVid=function(){
+    var m=document.getElementById("vidModal");
+    m.classList.remove("open");
+    var f=document.getElementById("vidFrame"); f.removeAttribute("src");
+    document.body.style.overflow="";
+  };
+  /* ---- image gallery popup with next/prev ---- */
+  var GAL={list:[],idx:0};
+  window.openGallery=function(pi,ii){
+    var p=PROJECTS[pi];
+    GAL.list=p.images; GAL.idx=ii||0;
+    document.getElementById("galTitle").textContent=p.title;
+    showGal();
+    document.getElementById("galModal").classList.add("open");
+    document.body.style.overflow="hidden";
+  };
+  function showGal(){
+    var img=document.getElementById("galImg"), e=document.getElementById("galEmpty");
+    document.getElementById("galCount").textContent=(GAL.idx+1)+" / "+GAL.list.length;
+    img.style.display=""; e.style.display="none";
+    img.onerror=function(){ img.style.display="none"; e.style.display="block"; };
+    img.src=GAL.list[GAL.idx];
+  }
+  window.galNav=function(d){
+    if(!GAL.list.length) return;
+    GAL.idx=(GAL.idx+d+GAL.list.length)%GAL.list.length;
+    showGal();
+  };
+  window.closeGal=function(){
+    document.getElementById("galModal").classList.remove("open");
+    var img=document.getElementById("galImg"); img.removeAttribute("src");
+    document.body.style.overflow="";
+  };
+
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){ closeVid(); closeGal(); }
+    if(document.getElementById("galModal").classList.contains("open")){
+      if(e.key==="ArrowRight") galNav(1);
+      if(e.key==="ArrowLeft") galNav(-1);
+    }
+  });
+  </script>
+
+  <div class="gal-modal" id="galModal" onclick="if(event.target===this)closeGal()">
+    <button class="gal-close" onclick="closeGal()" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="gal-stage">
+      <div class="gal-imgwrap">
+        <button class="gal-nav gal-prev" onclick="galNav(-1)" aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <img id="galImg" alt="Project image">
+        <div class="gal-empty" id="galEmpty">This image hasn't been added yet.</div>
+        <button class="gal-nav gal-next" onclick="galNav(1)" aria-label="Next">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="gal-bar">
+        <span class="t" id="galTitle">Project</span>
+        <span class="c" id="galCount">1 / 8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-modal" id="vidModal" onclick="if(event.target===this)closeVid()">
+    <div class="vid-inner">
+      <div class="vid-bar">
+        <h4 id="vidTitle">Project Demo</h4>
+        <button class="vid-close" onclick="closeVid()" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="vid-frame">
+        <iframe id="vidFrame" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div class="vid-guard"></div>
+        <div class="vid-empty" id="vidEmpty" style="display:none">Demo video coming soon for this project.</div>
+      </div>
+    </div>
+  </div>
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('toTop');if(!b)return;function t(){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

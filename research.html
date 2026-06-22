@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research — Avinash Kumar Singh</title>
+  <meta name="description" content="Doctoral research of Avinash Kumar Singh — academic supervision and core research frontiers in solar thermal energy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="index.html" class="brand"><span class="mk">A</span> A.K. Singh</a>
+      <div class="nav-links">
+        <a href="research.html" class="active">Research</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile" id="mob">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications &amp; Conferences</a>
+      <a href="patents.html">Patents</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- SUPERVISOR HUB -->
+  <section class="section page-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Academic Supervision &amp; Core Research Frontiers</span>
+        <h2>PhD <span class="hl">Doctoral Research</span></h2>
+        <div class="rule"></div>
+        <p style="color:var(--muted);max-width:680px;margin:10px 0 0;">Bridging advanced thermodynamic principles, optomechanical simulation tools, and hybrid renewables through continuous mathematical formulation, numerical analysis, and structural-thermal validation.</p>
+      </div>
+
+      <div class="sup-wrap">
+        <div class="sup-card" id="supCard"></div>
+        <div class="gateway" id="supGateway"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH FRONTIERS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Research Frontiers</span>
+        <h2>Core Research <span class="hl">Areas &amp; Scope</span></h2>
+        <div class="rule"></div>
+        <p style="color:var(--muted);max-width:680px;margin:10px 0 0;">Comprehensive thermal equations, flow mechanics models, and additive manufacturing workflows formulated during the doctoral study.</p>
+      </div>
+
+      <div class="frontier-grid" id="frontierGrid"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="c">© 2025 Avinash Kumar Singh · PhD Research Portfolio</div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="conferences.html">Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  var C=window.CONTENT||{};
+  var FRONTIERS=C.frontiers||[];
+
+  /* ---- supervisor (from store) ---- */
+  (function(){
+    var s=C.supervisor; if(!s) return;
+    var card=document.getElementById("supCard"), gw=document.getElementById("supGateway");
+    if(card){
+      card.innerHTML='<div class="sup-label">'+cEsc(s.label)+'</div>'+
+        '<h3>'+cEsc(s.name)+'</h3>'+
+        '<div class="sup-role">'+cEsc(s.role)+'</div>'+
+        '<div class="sup-org">'+cEsc(s.org)+'</div>'+
+        '<div class="sup-stats">'+(s.stats||[]).map(function(x){return '<div class="sup-stat"><b>'+cEsc(x.n)+'</b><span>'+cEsc(x.l)+'</span></div>';}).join('')+'</div>'+
+        '<p class="sup-quote">"'+cEsc(s.quote)+'"</p>'+
+        (s.metas||[]).map(function(m){return '<div class="sup-meta"><b>'+cEsc(m.b)+'</b>'+cEsc(m.t)+'</div>';}).join('');
+    }
+    if(gw){
+      gw.innerHTML='<h4>Academic Inquiries</h4>'+
+        '<div class="g-title">Direct Contact Gateway</div>'+
+        '<p style="color:var(--muted);font-size:13px;margin:0 0 12px;">Reach out for technical questions regarding solar thermal models, CAD assemblies, academic collaboration, or publishing parameters.</p>'+
+        '<div class="g-row"><div class="k">E-mail Address</div><a class="v" href="mailto:'+cEsc(s.email)+'">'+cEsc(s.email)+'</a></div>'+
+        '<div class="g-row"><div class="k">ORCID Digital Record</div><a class="v" href="https://orcid.org/'+cEsc(s.orcid)+'" target="_blank" rel="noopener">'+cEsc(s.orcid)+'</a></div>'+
+        '<div class="g-row"><div class="k">Google Scholar</div><a class="v" href="'+cEsc(s.scholar)+'" target="_blank" rel="noopener">Publications Directory</a></div>'+
+        '<div class="g-row"><div class="k">Supervisory Body</div><div class="v">'+cEsc(s.body)+'</div></div>';
+    }
+  })();
+
+  document.getElementById("frontierGrid").innerHTML=FRONTIERS.map(function(f,i){
+    return '<div class="frontier-card"><div class="frontier-top"><span class="frontier-ico">'+f.icon+'</span>'+
+      '<span class="frontier-num">Frontier #'+(i+1)+'</span></div>'+
+      '<h3>'+f.title+'</h3><p>'+f.desc+'</p>'+
+      '<div class="flabel">Focus Inquiries &amp; Outcomes</div>'+
+      '<ul class="flist">'+f.points.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul></div>';
+  }).join('');
+  </script>
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('toTop');if(!b)return;function t(){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

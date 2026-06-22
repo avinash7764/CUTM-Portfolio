@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conferences — Avinash Kumar Singh</title>
+  <meta name="description" content="Invited conference presentations of Avinash Kumar Singh on solar chimney and parabolic trough collector research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="index.html" class="brand"><span class="mk">A</span> A.K. Singh</a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html" class="active">Publications &amp; Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile" id="mob">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications &amp; Conferences</a>
+      <a href="patents.html">Patents</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="section page-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Academic &amp; Conference Outputs</span>
+        <h2>Conference <span class="hl">Presentations</span></h2>
+        <div class="rule"></div>
+        <p style="color:var(--muted);max-width:640px;margin:10px 0 0;">Invited research presentations and proceedings at national and international engineering symposiums.</p>
+      </div>
+
+      <div class="filters">
+        <a class="filter-btn" href="publications.html">Journal Publications <span class="n" id="pubCount">0</span></a>
+        <a class="filter-btn active" href="conferences.html">Conference Talks <span class="n" id="confCount">0</span></a>
+      </div>
+
+      <div class="entry-list" id="confList"></div>
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var C=window.CONTENT||{};
+    var pubs=C.publications||[], confs=C.conferences||[];
+    var pc=document.getElementById("pubCount"); if(pc) pc.textContent=pubs.length;
+    var cc=document.getElementById("confCount"); if(cc) cc.textContent=confs.length;
+    document.getElementById("confList").innerHTML=confs.map(function(c,i){
+      var tagcls=c.intl?'e-tag intl':'e-tag';
+      return '<div class="entry">'+
+        '<div class="idx">'+String(i+1).padStart(2,"0")+'</div>'+
+        '<div>'+
+          '<div class="meta"><span>'+cEsc(c.year)+'</span><span class="sep">·</span><span>'+cEsc(c.place)+'</span></div>'+
+          '<h3>'+cEsc(c.title)+'</h3>'+
+          '<div class="venue">'+cEsc(c.venue)+'</div>'+
+          '<div class="e-tags"><span class="'+tagcls+'">'+cEsc(c.tag)+'</span></div>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+  })();
+  </script>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="c">© 2025 Avinash Kumar Singh · PhD Research Portfolio</div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="conferences.html">Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('toTop');if(!b)return;function t(){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

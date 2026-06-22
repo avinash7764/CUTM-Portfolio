@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avinash Kumar Singh — Professional Engineer &amp; Researcher</title>
+  <meta name="description" content="Avinash Kumar Singh — Professional Mechanical Engineer and Ph.D. Scholar specializing in Digital Manufacturing & Industry 4.0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="content.js"></script>
+  <style>
+  :root{
+    --bg:#090b0e; --surface:#10141a; --surface-2:#161b24;
+    --ink:#f5f7fa; --muted:#8e9cae; --line:rgba(212,175,55,.16); --line-strong:rgba(212,175,55,.34);
+    --gold:#d4af37; --gold-2:#e6c860; --gold-soft:rgba(212,175,55,.08);
+    --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(900px 480px at 85% -8%,rgba(212,175,55,.07),transparent 60%),
+      linear-gradient(rgba(212,175,55,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(212,175,55,.035) 1px,transparent 1px);
+    background-size:100% 100%,40px 40px,40px 40px;background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:rgba(212,175,55,.3);color:#fff;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px;}
+  .mono{font-family:var(--mono);}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(9,11,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .nav-in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 26px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em;}
+  .brand .mk{width:34px;height:34px;border:1px solid var(--line-strong);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);color:var(--gold);font-weight:700;}
+  .nav-links{display:flex;gap:4px;}
+  .nav-links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 11px;border-radius:7px;transition:.18s;}
+  .nav-links a:hover{color:var(--gold);background:var(--gold-soft);}
+  .nav-tog{display:none;background:transparent;border:1px solid var(--line-strong);border-radius:8px;color:var(--gold);padding:8px;cursor:pointer;}
+  .nav-tog svg{width:20px;height:20px;display:block;}
+  .mobile{display:none;border-top:1px solid var(--line);background:var(--surface);}
+  .mobile.open{display:block;}
+  .mobile a{display:block;padding:13px 26px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);}
+  @media(max-width:980px){.nav-links{display:none;}.nav-tog{display:inline-flex;}}
+
+  /* HERO */
+  .hero{padding:64px 0 70px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:46px;align-items:center;}
+  .tag-eyebrow{display:inline-flex;align-items:center;gap:9px;}
+  .tag-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(212,175,55,.15);}
+  .hero h1{font-size:clamp(44px,7.5vw,92px);line-height:.96;letter-spacing:-.03em;font-weight:800;margin:18px 0 4px;}
+  .hero h1 .l2{display:block;color:var(--gold);}
+  .hero .subtitle{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);margin:14px 0 22px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+  .chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:6px 10px;background:rgba(255,255,255,.02);}
+  .hero .bio{color:var(--muted);font-size:16px;max-width:560px;}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:28px;}
+  .btn{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:13px 24px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:.2s;display:inline-flex;align-items:center;gap:9px;}
+  .btn-primary{background:var(--gold);color:#0a0a0a;}
+  .btn-primary:hover{background:var(--gold-2);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+
+  /* HUD panel */
+  .hud{position:relative;border:1px solid var(--line-strong);border-radius:16px;background:linear-gradient(160deg,var(--surface),#0c0f14);padding:22px;box-shadow:0 30px 70px rgba(0,0,0,.5);}
+  .hud::before{content:"";position:absolute;inset:9px;border:1px dashed rgba(212,175,55,.18);border-radius:10px;pointer-events:none;}
+  .hud .corner{position:absolute;width:14px;height:14px;}
+  .hud .c1{top:6px;left:6px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);}
+  .hud .c2{top:6px;right:6px;border-top:2px solid var(--gold);border-right:2px solid var(--gold);}
+  .hud .c3{bottom:6px;left:6px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold);}
+  .hud .c4{bottom:6px;right:6px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);}
+  .hud-title{font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:16px;}
+  .hud-wire{height:120px;border:1px solid var(--line);border-radius:10px;margin-bottom:16px;position:relative;overflow:hidden;background:
+    repeating-linear-gradient(0deg,transparent 0 13px,rgba(212,175,55,.06) 13px 14px),
+    repeating-linear-gradient(90deg,transparent 0 13px,rgba(212,175,55,.06) 13px 14px);}
+  .hud-wire::after{content:"";position:absolute;left:50%;top:50%;width:78px;height:78px;transform:translate(-50%,-50%) rotate(45deg);border:1.5px solid var(--gold);border-radius:10px;box-shadow:0 0 24px rgba(212,175,55,.25);}
+  .hud-rows{display:grid;gap:8px;}
+  .hud-row{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border-bottom:1px dashed rgba(212,175,55,.12);padding-bottom:7px;}
+  .hud-row .k{color:var(--muted);}
+  .hud-row .v{color:var(--gold);}
+  .scroll-i{margin-top:24px;font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);text-align:center;}
+
+  /* SECTION shell */
+  .section{padding:84px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:44px;}
+  .sec-head h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;margin:0;}
+  .sec-head h2 .hl{color:var(--gold);}
+  .rule{width:54px;height:2px;background:var(--gold);margin-top:6px;}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .skill-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;transition:.2s;}
+  .skill-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 24px 50px rgba(0,0,0,.4);}
+  .skill-card h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+  .skill-card ul{list-style:none;margin:0;padding:0;}
+  .skill-card li{font-size:14px;color:var(--muted);padding:7px 0 7px 18px;position:relative;}
+  .skill-card li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+
+  /* ACADEMIC */
+  .edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .edu-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;min-height:300px;position:relative;overflow:hidden;transition:.2s;}
+  .edu-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--gold),rgba(212,175,55,.2));}
+  .edu-card:hover{transform:translateY(-5px);border-color:var(--line-strong);box-shadow:0 24px 50px rgba(0,0,0,.45);}
+  .edu-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+  .edu-ico{width:46px;height:46px;border-radius:11px;background:var(--gold-soft);border:1px solid var(--line-strong);color:var(--gold);display:flex;align-items:center;justify-content:center;}
+  .edu-ico svg{width:24px;height:24px;}
+  .edu-date{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:6px 11px;background:var(--bg);}
+  .edu-date svg{width:13px;height:13px;color:var(--gold);}
+  .edu-deg{font-size:21px;font-weight:800;color:#fff;line-height:1.2;margin:0 0 10px;}
+  .edu-field{color:var(--gold);font-weight:700;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;line-height:1.5;margin-bottom:12px;}
+  .edu-org{color:var(--muted);font-size:14px;}
+  .edu-foot{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .edu-foot svg{width:14px;height:14px;color:var(--gold);}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:start;}
+  .contact h2{font-size:clamp(30px,4.4vw,48px);font-weight:800;letter-spacing:-.02em;margin:14px 0 16px;line-height:1.08;}
+  .contact h2 .hl{color:var(--gold);}
+  .contact .lead{color:var(--muted);max-width:520px;}
+  .coords{margin-top:26px;display:grid;gap:2px;}
+  .coord{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);}
+  .coord .ic{width:42px;height:42px;border-radius:11px;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
+  .coord .ic svg{width:18px;height:18px;}
+  .coord .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+  .coord .v{font-weight:600;font-size:15px;}
+  .desk{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden;}
+  .desk-tag{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+  .desk h3{font-size:20px;font-weight:800;margin:8px 0 6px;}
+  .desk p{color:var(--muted);font-size:13.5px;margin:0 0 18px;}
+  .progs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+  .prog{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:11px 12px;border-radius:9px;border:1px solid var(--line-strong);background:transparent;color:var(--muted);cursor:pointer;text-align:left;transition:.16s;}
+  .prog:hover{border-color:var(--gold);color:var(--gold);}
+  .prog.active{background:var(--gold);color:#0a0a0a;border-color:var(--gold);}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .field input,.field textarea{width:100%;padding:11px 13px;border:1px solid var(--line-strong);border-radius:9px;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;outline:none;transition:.16s;}
+  .field input:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .desk-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .desk-foot .ok{color:var(--gold);}
+
+  /* FOOTER */
+  .footer{border-top:1px solid var(--line);background:#0b0e12;padding:34px 0;}
+  .footer-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;}
+  .footer .c{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .footer-links{display:flex;flex-wrap:wrap;gap:16px;}
+  .footer-links a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .footer-links a:hover{color:var(--gold);}
+
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:36px;}
+    .skills-grid{grid-template-columns:repeat(2,1fr);}
+    .edu-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;gap:28px;}
+  }
+  @media(max-width:560px){
+    .skills-grid{grid-template-columns:1fr;}
+    .progs{grid-template-columns:1fr;}
+    .footer-in{flex-direction:column;align-items:flex-start;}
+  }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="#top" class="brand"><span class="mk">A</span> A.K. Singh</a>
+      <div class="nav-links">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications &amp; Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-tog" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile" id="mob">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications &amp; Conferences</a>
+      <a href="patents.html">Patents</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag-eyebrow"><span class="dot"></span><span class="eyebrow" id="heroEyebrow">Professional Engineer &amp; Researcher</span></span>
+        <h1 id="heroName">Avinash<span class="l2">Kumar Singh</span></h1>
+        <div class="subtitle" id="heroSubtitle">Specializing in Digital Manufacturing &amp; Industry 4.0</div>
+        <div class="chips" id="heroChips"></div>
+        <p class="bio" id="heroBio">Professional Mechanical Engineer and Ph.D. Scholar bridging academic research with industrial automation. Specializing in Digital Twins, Generative Design, and Virtual Commissioning using 3DEXPERIENCE and CAD/CAM platforms.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="appointment.html">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:2px;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Book Appointment
+          </a>
+          <a class="btn btn-ghost" href="projects.html">Explore Work</a>
+          <a class="btn btn-ghost" href="contact.html">Contact</a>
+          <a class="btn btn-ghost" id="heroCV" href="#" target="_blank" rel="noopener" style="display:none">Download CV</a>
+        </div>
+      </div>
+      <div>
+        <style>
+          .hero-portrait{position:relative;max-width:358px;margin-left:auto;}
+          /* classy matted portrait frame */
+          .hp-frame{position:relative;background:linear-gradient(180deg,#141b29,#0b0f18);border:1px solid var(--line-strong);border-radius:16px;padding:14px 14px 8px;box-shadow:0 44px 90px rgba(0,0,0,.62),0 2px 0 rgba(255,255,255,.03) inset;}
+          .hp-frame::before{content:"";position:absolute;inset:6px;border:1px solid rgba(212,175,55,.20);border-radius:11px;pointer-events:none;z-index:3;}
+          .hp-photo{position:relative;border-radius:9px;overflow:hidden;line-height:0;border:1px solid rgba(212,175,55,.30);background:#0b0f18;}
+          .hp-photo img{width:100%;height:auto;display:block;filter:grayscale(100%);transition:filter .45s ease;}
+          .hp-photo:hover img{filter:grayscale(0%);}
+          .hp-caption{text-align:center;padding:16px 8px 12px;}
+          .hp-divider{width:38px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 12px;}
+          .hp-name{display:block;font-weight:800;font-size:20px;letter-spacing:-.01em;color:#fff;}
+          .hp-role{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:7px;}
+        </style>
+        <div class="hero-portrait">
+          <div class="hp-frame">
+            <div class="hp-photo"><img id="heroPhoto" src="avinash.png" alt="Avinash Kumar Singh"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TECHNICAL ARSENAL -->
+  <section class="section" id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Technical Arsenal</span>
+        <h2>Engineering <span class="hl">Skills</span></h2>
+        <div class="rule"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>CAD &amp; PLM Platforms</h3>
+          <ul><li>SolidWorks</li><li>CATIA V5 / V6</li><li>3DEXPERIENCE Platform</li><li>ENOVIA / XCAD</li><li>AutoCAD</li><li>ArcMap / GIS</li></ul>
+        </div>
+        <div class="skill-card">
+          <h3>Design &amp; Engineering</h3>
+          <ul><li>Advanced Surfaces</li><li>Weldments &amp; Sheet Metal</li><li>GD&amp;T (ASME Y14.5)</li><li>FEA / Stress Analysis</li><li>Motion &amp; Kinematics</li><li>DFM / DFA Principles</li></ul>
+        </div>
+        <div class="skill-card">
+          <h3>DELMIA &amp; 3DEXCITE</h3>
+          <ul><li>Process Planning (MBOM)</li><li>Robotics / Ergonomics</li><li>Workstation Validation</li><li>High-fidelity Rendering</li><li>3D Interactive Media</li><li>Virtual Prototyping</li></ul>
+        </div>
+        <div class="skill-card">
+          <h3>Advanced Manufacturing</h3>
+          <ul><li>Digital Twin Setup</li><li>Additive Manufacturing</li><li>Subtractive CNC CAM</li><li>Tooling &amp; Fixtures</li><li>Line Balancing</li><li>Process FMEA Analysis</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC TIMELINE -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Academic Background</span>
+        <h2>Academic <span class="hl" style="font-style:italic;">Timeline</span></h2>
+        <div class="rule"></div>
+      </div>
+      <div class="edu-grid" id="eduGrid"></div>
+    </div>
+  </section>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <style>
+    .xp-timeline{max-width:860px;margin:0 auto;display:grid;gap:18px;}
+    .xp-item{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:22px 26px;transition:.2s;}
+    .xp-item:hover{transform:translateX(4px);border-color:var(--line-strong);box-shadow:0 24px 50px rgba(0,0,0,.4);}
+    .xp-when{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+    .xp-item h3{font-size:18px;font-weight:700;margin:6px 0 2px;}
+    .xp-org{color:var(--muted);font-size:14px;}
+    .xp-list{list-style:none;margin:12px 0 0;padding:0;}
+    .xp-list li{position:relative;padding:5px 0 5px 18px;font-size:13.5px;color:var(--muted);}
+    .xp-list li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+  </style>
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Career Journey</span>
+        <h2>Professional <span class="hl">Experience</span></h2>
+        <div class="rule"></div>
+      </div>
+      <div class="xp-timeline" id="xpTimeline"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <style>
+    .contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px;}
+    .cmethod{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 20px;text-align:center;transition:.2s;color:inherit;display:flex;flex-direction:column;align-items:center;}
+    .cmethod:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 24px 50px rgba(0,0,0,.42);}
+    .cmethod .cm-ic{width:48px;height:48px;border-radius:12px;background:var(--gold-soft);border:1px solid var(--line-strong);color:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;}
+    .cmethod .cm-ic svg{width:22px;height:22px;}
+    .cmethod .cm-ic img{width:100%;height:100%;object-fit:cover;display:block;}
+    .cmethod .cm-k{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+    .cmethod .cm-v{font-size:13.5px;font-weight:600;color:var(--ink);word-break:break-word;line-height:1.4;}
+    .book-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;background:linear-gradient(135deg,var(--surface),#0c0f14);border:1px solid var(--line-strong);border-radius:18px;padding:32px 36px;position:relative;overflow:hidden;}
+    .book-band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 22px,rgba(212,175,55,.05) 22px 23px),repeating-linear-gradient(90deg,transparent 0 22px,rgba(212,175,55,.05) 22px 23px);pointer-events:none;}
+    .book-band>div{position:relative;z-index:1;}
+    .book-band .bb-mini{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
+    .book-band h3{font-size:24px;font-weight:800;letter-spacing:-.01em;margin:7px 0 8px;color:#fff;}
+    .book-band p{color:var(--muted);font-size:14px;margin:0;max-width:520px;}
+    .book-band .btn{position:relative;z-index:1;flex-shrink:0;}
+    @media(max-width:860px){.contact-cards{grid-template-columns:repeat(2,1fr);}.book-band{flex-direction:column;align-items:flex-start;}}
+    @media(max-width:480px){.contact-cards{grid-template-columns:1fr;}}
+  </style>
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <div class="sec-head" style="text-align:center;align-items:center;margin-bottom:40px;">
+        <span class="eyebrow">Get in Touch</span>
+        <h2 style="font-size:clamp(30px,4.4vw,46px);">Let's build something <span class="hl">together</span></h2>
+        <div class="rule" style="margin-left:auto;margin-right:auto;"></div>
+        <p id="cBlurb" style="color:var(--muted);max-width:560px;margin:12px auto 0;">Open to design engineering, research collaboration, PLM consulting and academic training engagements.</p>
+      </div>
+
+      <div class="contact-cards">
+        <a class="cmethod" id="cEmailLink" href="mailto:avinashkumarsingh078@gmail.com">
+          <span class="cm-ic">
+            <img id="icEmail" src="https://lh3.googleusercontent.com/d/1_3h9BW0ShGYbdtgfKE0VlpgDQYXd4PdN=w120" alt="Email" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <svg style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M3 8l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+          </span>
+          <span class="cm-k">Email</span><span class="cm-v" id="cEmailVal">avinashkumarsingh078@gmail.com</span>
+        </a>
+        <a class="cmethod" id="cWaLink" href="https://wa.me/918917639056" target="_blank" rel="noopener">
+          <span class="cm-ic">
+            <img id="icWa" src="https://lh3.googleusercontent.com/d/1LavNfX90h7ZsvabDcLx383MgZirB8QVa=w120" alt="WhatsApp" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <svg style="display:none" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+          </span>
+          <span class="cm-k">WhatsApp</span><span class="cm-v">Launch secure message</span>
+        </a>
+        <a class="cmethod" id="cLiLink" href="https://www.linkedin.com/in/avinash70/" target="_blank" rel="noopener">
+          <span class="cm-ic">
+            <img id="icLi" src="https://lh3.googleusercontent.com/d/150qZEUGot3m7Z_vNXStTtQNA8slCxGyc" alt="LinkedIn" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <svg style="display:none" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </span>
+          <span class="cm-k">LinkedIn</span><span class="cm-v" id="cLiVal">AVINASH SINGH</span>
+        </a>
+        <div class="cmethod">
+          <span class="cm-ic">
+            <img id="icLoc" src="https://lh3.googleusercontent.com/d/1L5cE-UpIOQU2U0VA24TO05uiC2wZNCxN=w120" alt="Location" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <svg style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="cm-k">Location</span><span class="cm-v" id="cLocVal">Bhubaneswar, Odisha, India</span>
+        </div>
+      </div>
+
+      <div class="book-band">
+        <div>
+          <div class="bb-mini">Schedule a Meeting</div>
+          <h3>Book an Appointment</h3>
+          <p>Reserve a slot for CAD design, research, PLM, simulation, or academic consultation — synced to my Google Calendar.</p>
+        </div>
+        <a class="btn btn-primary" href="appointment.html">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:2px;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Book an Appointment
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="c">© 2025 Avinash Kumar Singh · PhD Research Portfolio</div>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#publications">Conferences</a>
+        <a href="patents.html">Patents</a>
+        <a href="#experience">Experience</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  var C=window.CONTENT||{};
+
+  /* ---- hero ---- */
+  (function(){
+    var h=C.hero||{};
+    var eb=document.getElementById('heroEyebrow'); if(eb&&h.eyebrow) eb.textContent=h.eyebrow;
+    var nm=document.getElementById('heroName'); if(nm) nm.innerHTML=cEsc(h.name1||'')+'<span class="l2">'+cEsc(h.name2||'')+'</span>';
+    var st=document.getElementById('heroSubtitle'); if(st&&h.subtitle) st.textContent=h.subtitle;
+    var bo=document.getElementById('heroBio'); if(bo&&h.bio) bo.textContent=h.bio;
+    var ch=document.getElementById('heroChips'); if(ch&&h.chips) ch.innerHTML=h.chips.map(function(c){return '<span class="chip">'+cEsc(c)+'</span>';}).join('');
+    var ph=document.getElementById('heroPhoto'); if(ph&&h.photo) ph.src=window.imgUrl(h.photo);
+    var cv=document.getElementById('heroCV'); if(cv&&h.resume){ cv.href=window.openUrl(h.resume); cv.style.display=''; }
+  })();
+
+  /* ---- contact cards ---- */
+  (function(){
+    var c=C.contact||{};
+    function setTxt(id,v){var e=document.getElementById(id);if(e&&v!=null)e.textContent=v;}
+    function setHref(id,v){var e=document.getElementById(id);if(e&&v!=null)e.setAttribute("href",v);}
+    function setImg(id,v){var e=document.getElementById(id);if(e&&v){e.style.display='';e.src=window.imgUrl(v);}}
+    setTxt("cBlurb",c.blurb);
+    setTxt("cEmailVal",c.email); if(c.email) setHref("cEmailLink","mailto:"+c.email);
+    if(c.whatsapp) setHref("cWaLink","https://wa.me/"+c.whatsapp);
+    setHref("cLiLink",c.linkedin); setTxt("cLiVal",c.linkedinLabel);
+    setTxt("cLocVal",c.location);
+    setImg("icEmail",c.iconEmail); setImg("icWa",c.iconWhatsapp); setImg("icLi",c.iconLinkedin); setImg("icLoc",c.iconLocation);
+  })();
+
+  /* ---- experience ---- */
+  (function(){
+    var el=document.getElementById('xpTimeline'); if(!el) return;
+    el.innerHTML=(C.experience||[]).map(function(x){
+      return '<div class="xp-item"><div class="xp-when">'+cEsc(x.when)+'</div>'+
+        '<h3>'+cEsc(x.role)+'</h3><div class="xp-org">'+cEsc(x.org)+'</div>'+
+        '<ul class="xp-list">'+(x.bullets||[]).map(function(b){return '<li>'+cEsc(b)+'</li>';}).join('')+'</ul></div>';
+    }).join('');
+  })();
+
+  /* ---- academic timeline ---- */
+  var EDU=C.education||[];
+  var CAP='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>';
+  var CAL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+  var PIN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  document.getElementById('eduGrid').innerHTML=EDU.map(function(e){
+    return '<div class="edu-card"><div class="edu-top"><span class="edu-ico">'+CAP+'</span>'+
+      '<span class="edu-date">'+CAL+'<span>'+cEsc(e.period)+'</span></span></div>'+
+      '<h3 class="edu-deg">'+cEsc(e.degree)+'</h3><div class="edu-field">'+cEsc(e.field)+'</div>'+
+      '<div class="edu-org">'+cEsc(e.org)+'</div>'+
+      '<div class="edu-foot">'+PIN+'<span>'+cEsc(e.loc)+'</span></div></div>';
+  }).join('');
+  function pick(btn,name){
+    document.querySelectorAll('.prog').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    document.getElementById('progField').value=name;
+  }
+  </script>
+  <style>
+    .to-top{position:fixed;right:24px;bottom:24px;z-index:80;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gold,#d4af37);color:#0b0d11;border:none;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 1px rgba(212,175,55,.4);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s ease,transform .25s ease,visibility .25s;}
+    .to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+    .to-top:hover{background:var(--gold-2,#e6c860);transform:translateY(-3px);}
+    .to-top svg{width:20px;height:20px;}
+    @media(max-width:560px){.to-top{right:16px;bottom:16px;width:42px;height:42px;}}
+  </style>
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('toTop');if(!b)return;function t(){if(window.scrollY>300)b.classList.add('show');else b.classList.remove('show');}window.addEventListener('scroll',t,{passive:true});t();})();</script>
+  <script src="theme.js"></script>
+</body>
+</html>

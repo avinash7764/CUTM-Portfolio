@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Avinash Kumar Singh Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="content.js"></script>
+  <style>
+    :root{
+      --bg:#090b0e;--surface:#10141a;--surface-2:#161b24;--ink:#f5f7fa;--muted:#8e9cae;
+      --line:rgba(212,175,55,.16);--line-strong:rgba(212,175,55,.34);--gold:#d4af37;--gold-2:#e6c860;--gold-soft:rgba(212,175,55,.08);
+      --sans:"Inter",system-ui,sans-serif;--mono:"JetBrains Mono",monospace;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);min-height:100vh;
+      background-image:radial-gradient(1100px 560px at 100% -12%,rgba(212,175,55,.05),transparent 62%);}
+    .btn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+      border:1px solid var(--line-strong);background:var(--gold-soft);color:var(--gold);border-radius:9px;padding:9px 14px;transition:.18s;white-space:nowrap;}
+    .btn:hover{background:rgba(212,175,55,.16);}
+    .btn.solid{background:var(--gold);color:#0b0d11;border-color:var(--gold);}
+    .btn.solid:hover{background:var(--gold-2);box-shadow:0 6px 18px rgba(212,175,55,.25);}
+    .btn.ghost{background:none;color:var(--muted);border-color:var(--line);}
+    .btn.ghost:hover{color:var(--ink);border-color:var(--line-strong);}
+    .btn.warn{color:#e89292;border-color:rgba(220,120,120,.4);background:rgba(220,120,120,.07);}
+    .btn.warn:hover{background:rgba(220,120,120,.14);}
+    .gate{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#070a0e;
+      background-image:radial-gradient(820px 480px at 50% 0,rgba(212,175,55,.09),transparent 60%);}
+    .gate.hidden{display:none;}
+    .gate-box{background:var(--surface);border:1px solid var(--line-strong);border-radius:18px;padding:36px 30px;width:320px;display:flex;flex-direction:column;gap:14px;box-shadow:0 40px 90px rgba(0,0,0,.65);}
+    .gate-logo{width:46px;height:46px;border-radius:12px;background:var(--gold);color:#0b0d11;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;}
+    .gate-title{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-align:center;}
+    .gate-box input{background:var(--surface-2);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:13px 14px;font-size:14px;font-family:var(--sans);}
+    .gate-box input:focus{outline:none;border-color:var(--gold);background:#1a212c;}
+    .gate-err{color:#e89292;font-size:12px;text-align:center;min-height:14px;font-family:var(--mono);letter-spacing:.04em;}
+    .app{display:flex;min-height:100vh;}
+    .sidebar{width:266px;flex-shrink:0;background:linear-gradient(180deg,#0c1017,#080a0d);border-right:1px solid var(--line-strong);
+      position:sticky;top:0;height:100vh;display:flex;flex-direction:column;}
+    .side-brand{display:flex;align-items:center;padding:20px 20px 18px;border-bottom:1px solid var(--line);}
+    .side-brand .mk{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--gold);color:#0b0d11;font-weight:800;font-size:16px;margin-right:11px;flex-shrink:0;}
+    .side-brand .nm{font-weight:800;font-size:14.5px;line-height:1.1;}
+    .side-brand .sub{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+    .side-nav{flex:1;overflow-y:auto;padding:12px 12px 26px;}
+    .nav-grp{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:18px 10px 8px;}
+    .nav-grp:first-child{margin-top:6px;}
+    .nav-item{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:1px solid transparent;color:var(--muted);
+      font-family:var(--sans);font-size:13.5px;font-weight:500;padding:9px 11px;border-radius:10px;cursor:pointer;transition:.14s;margin-bottom:2px;}
+    .nav-item:hover{color:var(--ink);background:var(--surface);}
+    .nav-item.active{color:var(--gold);background:var(--gold-soft);border-color:var(--line-strong);font-weight:600;}
+    .nav-item .ic{font-size:15px;width:20px;text-align:center;flex-shrink:0;filter:grayscale(.2);}
+    .nav-item .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .nav-item .cnt{font-family:var(--mono);font-size:10px;background:var(--surface-2);border:1px solid var(--line);border-radius:20px;padding:1px 8px;color:var(--muted);}
+    .nav-item.active .cnt{color:var(--gold);border-color:var(--line-strong);background:rgba(212,175,55,.1);}
+    .content{flex:1;min-width:0;display:flex;flex-direction:column;}
+    .top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:11px;flex-wrap:wrap;
+      padding:13px 26px;background:rgba(9,11,14,.85);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-strong);}
+    .crumb{line-height:1.15;}
+    .crumb .lvl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+    .crumb .ttl{font-weight:800;font-size:16px;letter-spacing:-.01em;margin-top:3px;}
+    .top .spacer{flex:1;}
+    .saved{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7fd17f;opacity:0;transition:.3s;display:flex;align-items:center;gap:6px;}
+    .saved.show{opacity:1;}
+    .saved.dirty{color:var(--gold-2);}
+    .main{padding:28px 30px 90px;max-width:880px;width:100%;}
+    .panel-head{margin:0 0 22px;}
+    .panel-head h2{font-size:23px;font-weight:800;letter-spacing:-.01em;margin:0;}
+    .panel-head .hint{color:var(--muted);font-size:13px;margin:9px 0 0;line-height:1.6;}
+    .form-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 22px 8px;margin:0 0 18px;}
+    .fld{display:block;margin:0 0 16px;}
+    .fld .lbl{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+    .fld input[type=text],.fld textarea,.fld select{width:100%;background:var(--surface-2);border:1px solid var(--line);color:var(--ink);
+      border-radius:10px;padding:11px 13px;font-family:var(--sans);font-size:14px;transition:.15s;}
+    .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--gold);background:#1a212c;box-shadow:0 0 0 3px rgba(212,175,55,.1);}
+    .fld textarea{min-height:84px;resize:vertical;line-height:1.55;}
+    .fld-bool{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;}
+    .fld-bool input{width:18px;height:18px;accent-color:var(--gold);cursor:pointer;}
+    .fld-bool .lbl{margin:0;}
+    .item{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 20px 6px;margin:0 0 16px;transition:.15s;}
+    .item:hover{border-color:var(--line-strong);}
+    .subitem{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:15px 15px 4px;margin:0 0 12px;}
+    .item-top{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px;gap:10px;}
+    .item-t{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--gold);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .item-t .hash{opacity:.5;margin-right:6px;}
+    .item-top span:last-child{flex-shrink:0;display:flex;gap:5px;}
+    .icb{width:30px;height:30px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);border-radius:8px;cursor:pointer;font-size:13px;line-height:1;transition:.15s;}
+    .icb:hover{color:var(--gold);border-color:var(--line-strong);}
+    .icb.del:hover{color:#e89292;border-color:rgba(220,120,120,.4);}
+    .add-item,.mini-add{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+      border:1px dashed var(--line-strong);background:none;color:var(--gold);border-radius:11px;padding:13px 14px;width:100%;transition:.15s;}
+    .add-item:hover,.mini-add:hover{background:var(--gold-soft);}
+    .objlist{margin:6px 0 16px;}
+    .objlist-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;}
+    .mini-del{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+      border:1px solid rgba(220,120,120,.35);background:rgba(220,120,120,.06);color:#e89292;border-radius:8px;padding:7px 11px;margin:0 0 8px;}
+    .row-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px;}
+    .deploy-note{margin-top:24px;background:linear-gradient(120deg,var(--surface),rgba(212,175,55,.04));border:1px solid var(--line);border-radius:14px;padding:17px 19px;color:var(--muted);font-size:12.5px;line-height:1.7;}
+    .deploy-note b{color:var(--ink);}
+    @media(max-width:820px){
+      .app{flex-direction:column;}
+      .sidebar{position:static;width:100%;height:auto;}
+      .side-nav{max-height:none;display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;}
+      .nav-grp{width:100%;}
+      .nav-item{width:auto;}
+      .main{padding:22px 18px 80px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="gate" id="gate">
+    <form class="gate-box" onsubmit="return gateSubmit(event)">
+      <div class="gate-logo">A</div>
+      <div class="gate-title">Admin Access</div>
+      <input type="password" id="gatePw" autocomplete="current-password" placeholder="Password">
+      <button class="btn solid" type="submit">Enter</button>
+      <div class="gate-err" id="gateErr"></div>
+    </form>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="side-brand">
+        <span class="mk">A</span>
+        <div>
+          <div class="nm">A.K. Singh</div>
+          <div class="sub">Portfolio Admin</div>
+        </div>
+      </div>
+      <nav class="side-nav" id="side"></nav>
+    </aside>
+
+    <div class="content">
+      <header class="top">
+        <div class="crumb">
+          <div class="lvl">Editing Section</div>
+          <div class="ttl" id="crumb">Hero</div>
+        </div>
+        <div class="spacer"></div>
+        <span class="saved" id="saved"></span>
+        <button class="btn solid" onclick="saveNow()">Save</button>
+        <a class="btn ghost" href="index.html" target="_blank">View Site ↗</a>
+        <button class="btn ghost" onclick="doExport()">Export</button>
+        <button class="btn ghost" onclick="document.getElementById('importFile').click()">Import</button>
+        <button class="btn warn" onclick="resetAll()">Reset All</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none" onchange="doImport(this)">
+      </header>
+      <main class="main"><div class="panel" id="panel"></div></main>
+    </div>
+  </div>
+
+  <script>
+  var DATA = JSON.parse(JSON.stringify(window.CONTENT || {}));
+
+  var SECTIONS = [
+    {id:'hero',label:'Hero',kind:'object',path:'hero',hint:'Landing-page headline, chips, bio, profile photo and résumé. Photo and résumé accept a Google Drive share link.',fields:[
+      {k:'eyebrow',label:'Eyebrow'},{k:'name1',label:'First name'},{k:'name2',label:'Last name'},
+      {k:'subtitle',label:'Subtitle'},{k:'bio',label:'Bio',type:'textarea'},{k:'chips',label:'Chips (one per line)',type:'lines'},
+      {k:'photo',label:'Profile photo (Google Drive link or filename)'},
+      {k:'resume',label:'Résumé / CV — adds a "Download CV" button (Google Drive PDF link)'}
+    ]},
+    {id:'education',label:'Education',kind:'list',path:'education',itemTitle:'degree',fields:[
+      {k:'degree',label:'Degree'},{k:'field',label:'Field'},{k:'org',label:'Institution'},{k:'period',label:'Period'},{k:'loc',label:'Location'}
+    ]},
+    {id:'experience',label:'Experience',kind:'list',path:'experience',itemTitle:'role',fields:[
+      {k:'when',label:'Period'},{k:'role',label:'Role'},{k:'org',label:'Organization'},{k:'bullets',label:'Bullets (one per line)',type:'lines'}
+    ]},
+    {id:'supervisor',label:'Research Supervisor',kind:'object',path:'supervisor',hint:'Shown at the top of the Research page.',fields:[
+      {k:'label',label:'Label'},{k:'name',label:'Name'},{k:'role',label:'Role'},{k:'org',label:'Organization'},
+      {k:'quote',label:'Quote',type:'textarea'},{k:'email',label:'Email'},{k:'orcid',label:'ORCID'},{k:'scholar',label:'Scholar URL'},
+      {k:'body',label:'Supervisory body',type:'textarea'},
+      {k:'stats',label:'Stats',type:'objlist',sub:[{k:'n',label:'Value'},{k:'l',label:'Label'}]},
+      {k:'metas',label:'Detail blocks',type:'objlist',sub:[{k:'b',label:'Heading'},{k:'t',label:'Text',type:'textarea'}]}
+    ]},
+    {id:'frontiers',label:'Research Frontiers',kind:'list',path:'frontiers',itemTitle:'title',fields:[
+      {k:'icon',label:'Icon (emoji)'},{k:'title',label:'Title'},{k:'desc',label:'Description',type:'textarea'},{k:'points',label:'Points (one per line)',type:'lines'}
+    ]},
+    {id:'publications',label:'Publications',kind:'list',path:'publications',itemTitle:'title',fields:[
+      {k:'year',label:'Year'},{k:'venue',label:'Venue'},{k:'vol',label:'Volume / pages'},{k:'title',label:'Title'},
+      {k:'authors',label:'Authors'},{k:'doi',label:'DOI'},{k:'tags',label:'Tags (one per line)',type:'lines'}
+    ]},
+    {id:'conferences',label:'Conferences',kind:'list',path:'conferences',itemTitle:'title',fields:[
+      {k:'year',label:'Year'},{k:'place',label:'Place'},{k:'title',label:'Title'},{k:'venue',label:'Venue / event'},
+      {k:'tag',label:'Tag text'},{k:'intl',label:'International',type:'bool'}
+    ]},
+    {id:'patents',label:'Patents',kind:'list',path:'patents',itemTitle:'title',fields:[
+      {k:'title',label:'Title'},{k:'field',label:'Field'},{k:'desc',label:'Description',type:'textarea'},
+      {k:'app',label:'Application No.'},{k:'year',label:'Year'},{k:'svg',label:'Diagram',type:'select',opts:['chimney','vortex','distill','tracker']}
+    ]},
+    {id:'projects',label:'Projects',kind:'list',path:'projects',itemTitle:'title',hint:'Paste Google Drive image links (one per line) and a YouTube/Drive video link. If image links are empty, the gallery falls back to the projimg/ folder.',fields:[
+      {k:'title',label:'Title'},{k:'cat',label:'Category',type:'select',opts:['design','manufacturing','delmia','enovia','aec']},
+      {k:'catLabel',label:'Category label'},{k:'desc',label:'Description',type:'textarea'},
+      {k:'stack',label:'Tech stack (one per line)',type:'lines'},
+      {k:'images',label:'Image links (Google Drive, one per line — up to 8)',type:'lines'},
+      {k:'video',label:'Video link (YouTube or Google Drive)'}
+    ]},
+    {id:'certlink',label:'Certifications (Credly link)',kind:'object',path:'certifications',fields:[
+      {k:'credly',label:'Credly profile URL'}
+    ]},
+    {id:'badges',label:'Badges',kind:'list',path:'certifications.badges',itemTitle:'title',hint:'Each badge shows a generated Dassault-style seal. Add a "Badge image" Drive link to use a real badge image, and a "Certificate" Drive link (PDF or image) to show the certificate in the popup.',fields:[
+      {k:'title',label:'Title'},{k:'tier',label:'Tier',type:'select',opts:['associate','professional','specialist','expert']},
+      {k:'label',label:'Label (short name in band)'},{k:'prog',label:'Program (curved bottom text)'},
+      {k:'band',label:'Band colour (hex, e.g. #c0392b)'},
+      {k:'issuer',label:'Issuer'},{k:'issued',label:'Issued date'},
+      {k:'img',label:'Badge image (Google Drive link — optional, replaces the seal)'},
+      {k:'cert',label:'Certificate file (Google Drive link — PDF or image, shown in popup)'}
+    ]},
+    {id:'documents',label:'Documents',kind:'list',path:'documents',itemTitle:'title',hint:'Downloadable files (résumé, PDFs, images, docs) shown on the Contact page. Paste a Google Drive share link or a direct URL.',fields:[
+      {k:'title',label:'Title'},{k:'type',label:'Type label (e.g. PDF · Resume)'},{k:'link',label:'File link (Google Drive or direct URL)'}
+    ]},
+    {id:'contact',label:'Contact',kind:'object',path:'contact',hint:'Contact details plus the card icons. Each icon accepts a Google Drive share link (a built-in icon is the fallback).',fields:[
+      {k:'blurb',label:'Intro blurb',type:'textarea'},{k:'email',label:'Email'},{k:'whatsapp',label:'WhatsApp number (digits, no +)'},
+      {k:'linkedin',label:'LinkedIn URL'},{k:'linkedinLabel',label:'LinkedIn label'},{k:'location',label:'Location'},
+      {k:'iconEmail',label:'Email icon (Drive link)'},{k:'iconWhatsapp',label:'WhatsApp icon (Drive link)'},
+      {k:'iconLinkedin',label:'LinkedIn icon (Drive link)'},{k:'iconLocation',label:'Location icon (Drive link)'}
+    ]},
+    {id:'appointment',label:'Appointment',kind:'object',path:'appointment',hint:'Dropdown options on the booking form.',fields:[
+      {k:'purposes',label:'Purpose options (one per line)',type:'lines'},{k:'software',label:'Software options (one per line)',type:'lines'}
+    ]}
+  ];
+
+  function resolve(path){ return path.split('.').reduce(function(o,k){ return o[k]; },DATA); }
+  function setRef(path,val){
+    var ks=path.split('.'),o=DATA;
+    for(var i=0;i<ks.length-1;i++){ o=o[ks[i]]; }
+    o[ks[ks.length-1]]=val;
+  }
+
+  var savedEl=document.getElementById('saved'), dirty=false, savedT;
+  function markDirty(){ dirty=true; savedEl.textContent='● Unsaved'; savedEl.classList.add('show','dirty'); }
+  function saveNow(){
+    try{ window.saveContent(DATA); }catch(e){ alert('Save failed: '+e.message); return; }
+    dirty=false; savedEl.textContent='Saved ✓'; savedEl.classList.add('show'); savedEl.classList.remove('dirty');
+    clearTimeout(savedT); savedT=setTimeout(function(){ if(!dirty) savedEl.classList.remove('show'); },1600);
+  }
+  window.saveNow=saveNow;
+  window.addEventListener('beforeunload',function(e){ if(dirty){ e.preventDefault(); e.returnValue=''; } });
+
+  function fieldInput(obj,f){
+    var type=f.type||'text';
+    var wrap=document.createElement('label'); wrap.className='fld'+(type==='bool'?' fld-bool':'');
+    var lab=document.createElement('span'); lab.className='lbl'; lab.textContent=f.label||f.k;
+    var el;
+    if(type==='textarea'||type==='lines'){
+      el=document.createElement('textarea');
+      el.value=(type==='lines')?(Array.isArray(obj[f.k])?obj[f.k].join('\n'):''):(obj[f.k]==null?'':obj[f.k]);
+      el.addEventListener('input',function(){
+        obj[f.k]=(type==='lines')?el.value.split('\n').map(function(s){return s.replace(/\s+$/,'');}).filter(function(s){return s.length;}):el.value;
+        markDirty();
+      });
+    } else if(type==='select'){
+      el=document.createElement('select');
+      f.opts.forEach(function(o){var op=document.createElement('option');op.value=o;op.textContent=o;el.appendChild(op);});
+      el.value=obj[f.k]||f.opts[0];
+      el.addEventListener('change',function(){obj[f.k]=el.value;markDirty();});
+    } else if(type==='bool'){
+      el=document.createElement('input'); el.type='checkbox'; el.checked=!!obj[f.k];
+      el.addEventListener('change',function(){obj[f.k]=el.checked;markDirty();});
+      wrap.appendChild(el); wrap.appendChild(lab); return wrap;
+    } else {
+      el=document.createElement('input'); el.type='text'; el.value=obj[f.k]==null?'':obj[f.k];
+      el.addEventListener('input',function(){obj[f.k]=el.value;markDirty();});
+    }
+    wrap.appendChild(lab); wrap.appendChild(el); return wrap;
+  }
+
+  function objlistField(obj,f,rerender){
+    var box=document.createElement('div'); box.className='objlist';
+    var h=document.createElement('div'); h.className='objlist-h'; h.textContent=f.label||f.k; box.appendChild(h);
+    if(!Array.isArray(obj[f.k])) obj[f.k]=[];
+    obj[f.k].forEach(function(it,idx){
+      var card=document.createElement('div'); card.className='subitem';
+      f.sub.forEach(function(sf){ card.appendChild(fieldInput(it,sf)); });
+      var del=document.createElement('button'); del.className='mini-del'; del.textContent='Remove';
+      del.onclick=function(){ obj[f.k].splice(idx,1); markDirty(); rerender(); };
+      card.appendChild(del); box.appendChild(card);
+    });
+    var add=document.createElement('button'); add.className='mini-add'; add.textContent='+ Add';
+    add.onclick=function(){ var nw={}; f.sub.forEach(function(sf){nw[sf.k]='';}); obj[f.k].push(nw); markDirty(); rerender(); };
+    box.appendChild(add); return box;
+  }
+
+  function mkbtn(txt,cls,fn){var b=document.createElement('button');b.className='icb'+(cls?' '+cls:'');b.textContent=txt;b.onclick=fn;return b;}
+
+  function renderSection(sec){
+    var panel=document.getElementById('panel'); panel.innerHTML='';
+    var crumb=document.getElementById('crumb'); if(crumb) crumb.textContent=sec.label;
+
+    var head=document.createElement('div'); head.className='panel-head';
+    var h=document.createElement('h2'); h.textContent=sec.label; head.appendChild(h);
+    if(sec.hint){ var p=document.createElement('p'); p.className='hint'; p.textContent=sec.hint; head.appendChild(p); }
+    panel.appendChild(head);
+
+    if(sec.kind==='object'){
+      var obj=resolve(sec.path);
+      var card=document.createElement('div'); card.className='form-card';
+      sec.fields.forEach(function(f){
+        if(f.type==='objlist') card.appendChild(objlistField(obj,f,function(){renderSection(sec);}));
+        else card.appendChild(fieldInput(obj,f));
+      });
+      panel.appendChild(card);
+    } else {
+      var arr=resolve(sec.path);
+      arr.forEach(function(it,idx){
+        var card=document.createElement('div'); card.className='item';
+        var top=document.createElement('div'); top.className='item-top';
+        var t=document.createElement('span'); t.className='item-t'; t.innerHTML='<span class="hash">#'+(idx+1)+'</span>'+cEsc(it[sec.itemTitle]||'(untitled)');
+        var ctr=document.createElement('span');
+        ctr.appendChild(mkbtn('↑','',function(){ if(idx>0){arr.splice(idx-1,0,arr.splice(idx,1)[0]);markDirty();renderSection(sec);} }));
+        ctr.appendChild(mkbtn('↓','',function(){ if(idx<arr.length-1){arr.splice(idx+1,0,arr.splice(idx,1)[0]);markDirty();renderSection(sec);} }));
+        ctr.appendChild(mkbtn('✕','del',function(){ if(confirm('Delete this item?')){arr.splice(idx,1);markDirty();renderSection(sec);} }));
+        top.appendChild(t); top.appendChild(ctr); card.appendChild(top);
+        sec.fields.forEach(function(f){ card.appendChild(fieldInput(it,f)); });
+        panel.appendChild(card);
+      });
+      var add=document.createElement('button'); add.className='add-item'; add.textContent='+ Add item';
+      add.onclick=function(){
+        var nw={}; sec.fields.forEach(function(f){ nw[f.k]=(f.type==='lines')?[]:(f.type==='bool'?false:(f.type==='select'?f.opts[0]:'')); });
+        arr.push(nw); markDirty(); renderSection(sec);
+      };
+      panel.appendChild(add);
+    }
+
+    var actions=document.createElement('div'); actions.className='row-actions';
+    var sv=document.createElement('button'); sv.className='btn solid'; sv.textContent='Save changes'; sv.onclick=function(){ saveNow(); };
+    var rs=document.createElement('button'); rs.className='btn warn'; rs.textContent='Reset this section';
+    rs.onclick=function(){
+      if(!confirm('Reset "'+sec.label+'" to the original content?')) return;
+      var def=window.getDefaults(); setRef(sec.path, resolvePath(def,sec.path)); markDirty(); renderSection(sec);
+    };
+    actions.appendChild(sv); actions.appendChild(rs);
+    panel.appendChild(actions);
+
+    var note=document.createElement('div'); note.className='deploy-note';
+    note.innerHTML='<b>Attaching media:</b> for any photo, image, PDF, document or video field, paste a <b>Google Drive share link</b> (set the file to “Anyone with the link”). Videos also accept YouTube links. '+
+      '<b>Saving:</b> changes save to this browser and appear on the site when you reload a page. Use <b>Export</b> for a backup and <b>Import</b> to restore.';
+    panel.appendChild(note);
+
+    updateCounts();
+  }
+
+  function resolvePath(root,path){ return path.split('.').reduce(function(o,k){return o[k];},root); }
+
+  var GROUPS=[
+    {name:'Profile', ids:['hero','education','experience']},
+    {name:'Research', ids:['supervisor','frontiers','publications','conferences','patents']},
+    {name:'Work', ids:['projects','certlink','badges']},
+    {name:'Media & Contact', ids:['documents','contact','appointment']}
+  ];
+  var ICONS={hero:'🏠',education:'🎓',experience:'💼',supervisor:'🧑‍🏫',frontiers:'🔬',publications:'📄',conferences:'🎤',patents:'📐',projects:'🧩',certlink:'🔗',badges:'🏅',documents:'📎',contact:'✉️',appointment:'📅'};
+
+  function secById(id){ return SECTIONS.filter(function(s){return s.id===id;})[0]; }
+
+  function buildSidebar(){
+    var side=document.getElementById('side'); side.innerHTML='';
+    GROUPS.forEach(function(g){
+      var h=document.createElement('div'); h.className='nav-grp'; h.textContent=g.name; side.appendChild(h);
+      g.ids.forEach(function(id){
+        var sec=secById(id); if(!sec) return;
+        var b=document.createElement('button'); b.className='nav-item'; b.dataset.id=sec.id;
+        var cnt='';
+        if(sec.kind==='list'){ try{ cnt='<span class="cnt">'+resolve(sec.path).length+'</span>'; }catch(e){} }
+        b.innerHTML='<span class="ic">'+(ICONS[id]||'•')+'</span><span class="nm">'+sec.label+'</span>'+cnt;
+        b.onclick=function(){
+          document.querySelectorAll('.nav-item').forEach(function(x){x.classList.remove('active');});
+          b.classList.add('active'); renderSection(sec);
+        };
+        side.appendChild(b);
+      });
+    });
+    var first=side.querySelector('.nav-item'); if(first) first.classList.add('active');
+  }
+
+  function updateCounts(){
+    document.querySelectorAll('.nav-item').forEach(function(b){
+      var sec=secById(b.dataset.id);
+      if(sec&&sec.kind==='list'){ var c=b.querySelector('.cnt'); if(c){ try{ c.textContent=resolve(sec.path).length; }catch(e){} } }
+    });
+  }
+
+  function doExport(){
+    var blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='portfolio-content.json'; a.click(); URL.revokeObjectURL(a.href);
+  }
+  function doImport(input){
+    var f=input.files[0]; if(!f) return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{ var obj=JSON.parse(r.result); DATA=obj; window.saveContent(DATA);
+        dirty=false; savedEl.textContent='Saved ✓'; savedEl.classList.add('show'); savedEl.classList.remove('dirty');
+        var act=document.querySelector('.nav-item.active'); var sec=secById(act&&act.dataset.id)||SECTIONS[0];
+        buildSidebar(); var ab=document.querySelector('.nav-item[data-id="'+sec.id+'"]'); if(ab){document.querySelectorAll('.nav-item').forEach(function(x){x.classList.remove('active');});ab.classList.add('active');}
+        renderSection(sec); alert('Imported successfully.');
+      }catch(e){ alert('Could not read that file: '+e.message); }
+      input.value='';
+    };
+    r.readAsText(f);
+  }
+  function resetAll(){
+    if(!confirm('Reset ALL sections to the original content? This clears your saved edits in this browser.')) return;
+    window.resetContent(); DATA=JSON.parse(JSON.stringify(window.CONTENT));
+    dirty=false; savedEl.textContent='Saved ✓'; savedEl.classList.add('show'); savedEl.classList.remove('dirty');
+    buildSidebar(); renderSection(SECTIONS[0]);
+  }
+
+  var ADMIN_PW="Avinash@7764";
+  var inited=false;
+  function initAdmin(){ if(inited) return; inited=true; buildSidebar(); renderSection(SECTIONS[0]); }
+  window.gateSubmit=function(e){
+    if(e&&e.preventDefault) e.preventDefault();
+    var v=document.getElementById('gatePw').value;
+    if(v===ADMIN_PW){
+      try{ sessionStorage.setItem('aks_admin_ok','1'); }catch(_){}
+      document.getElementById('gate').classList.add('hidden');
+      initAdmin();
+    } else {
+      document.getElementById('gateErr').textContent='Incorrect password.';
+      var pw=document.getElementById('gatePw'); pw.value=''; pw.focus();
+    }
+    return false;
+  };
+  (function(){
+    var ok=false; try{ ok=sessionStorage.getItem('aks_admin_ok')==='1'; }catch(_){}
+    if(ok){ document.getElementById('gate').classList.add('hidden'); initAdmin(); }
+    else { var pw=document.getElementById('gatePw'); if(pw) pw.focus(); }
+  })();
+  </script>
+</body>
+</html>
